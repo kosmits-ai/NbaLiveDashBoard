@@ -2,6 +2,8 @@ import requests
 import streamlit as st
 import datetime
 import pandas as pd
+import os
+from dotenv import load_dotenv
 st.set_page_config(
     page_title="NBA Live Dashboard",  # Title shown on the browser tab
     page_icon="https://images.ctfassets.net/h8q6lxmb5akt/5qXnOINbPrHKXWa42m6NOa/421ab176b501f5bdae71290a8002545c/nba-logo_2x.png",  # Emoji or image URL
@@ -9,6 +11,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"  # Options: "auto", "expanded", "collapsed"
 )
 
+load_dotenv()
 st.markdown("""
     <style>
         .title-container {
@@ -56,7 +59,7 @@ custom_css = """
         text-align: center;
     }
      .basic-box {
-            width: 80%;  /* Make the box take full width */
+            width: 100%;  /* Make the box take full width */
             padding: 10px;
             background-color: #f0f0f0;
             border: 2px solid #d1d1d1;
@@ -154,7 +157,7 @@ team_shortcut_logos = {
 # Inject CSS
 st.markdown(custom_css, unsafe_allow_html=True)
 
-API_KEY = "FVHbeA1XLEF2eR1eBOxcCTPe9O1OLNyxCi3F41y8"
+API_KEY = os.getenv("API_KEY")
 
 def get_injury_report():
     url = f"https://api.sportradar.com/nba/trial/v8/en/league/injuries.json?api_key={API_KEY}"
