@@ -157,7 +157,7 @@ team_shortcut_logos = {
 # Inject CSS
 st.markdown(custom_css, unsafe_allow_html=True)
 
-API_KEY = os.getenv("API_KEY")
+API_KEY = st.secrets["API_KEY"]
 
 def get_injury_report():
     url = f"https://api.sportradar.com/nba/trial/v8/en/league/injuries.json?api_key={API_KEY}"
